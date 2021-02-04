@@ -13,20 +13,20 @@ const client = OPCUAClient.create({ endpoint_must_exist: false });
 
 const endpointUrl = "opc.tcp://LPT00116.VICOMTECH.ES:26543";
 const nodeId = "ns=1;s=Temperature";
-const DEVICE = "device1"
 const TIMER = 50000
-const MQTTURL= 'tcp://broker.mqttdashboard.com:1883'
-const clientMqtt = mqtt.connect(MQTTURL)
+// const DEVICE = "device1"
+// const MQTTURL= 'tcp://broker.mqttdashboard.com:1883'
+// const clientMqtt = mqtt.connect(MQTTURL)
 
-clientMqtt.on('connect', () => {
-    console.log("mqtt connecteed")
-    clientMqtt.publish('imh/connected',DEVICE)
-    clientMqtt.subscribe('imh/#')
-  })
+// clientMqtt.on('connect', () => {
+//     console.log("mqtt connecteed")
+//     clientMqtt.publish('imh/connected',DEVICE)
+//     clientMqtt.subscribe('imh/#')
+//   })
   
-clientMqtt.on('message', (topic, message) => {
-    console.log("New temperature",topic.toString(),message.toString())
-  })
+// clientMqtt.on('message', (topic, message) => {
+//     console.log("New temperature",topic.toString(),message.toString())
+//   })
 
 
 
@@ -128,8 +128,8 @@ async.series([
                 monitoredItem
                     .on("changed", function(value) {
                         console.log(" New Value = ", value.toString());
-                        const newValue = value.value.value.toString();
-                        clientMqtt.publish('imh/'+DEVICE+'/temperature',newValue)
+                        // const newValue = value.value.value.toString();
+                        // clientMqtt.publish('imh/'+DEVICE+'/temperature',newValue)
 
                     })
                     .on("err", (err) => {

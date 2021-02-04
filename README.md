@@ -7,3 +7,9 @@ Resources:
 - https://github.com/node-opcua/node-opcua
 - https://github.com/mqttjs/MQTT.js/
 - http://www.hivemq.com/demos/websocket-client/
+
+Instructions:
+
+npm install
+node server.js
+node client.js
