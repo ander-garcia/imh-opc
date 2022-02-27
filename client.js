@@ -13,7 +13,7 @@ const client = OPCUAClient.create({ endpoint_must_exist: false });
 
 const endpointUrl = "opc.tcp://LPT00116.VICOMTECH.ES:26543";
 const nodeId = "ns=1;s=Temperature";
-const TIMER = 50000
+const TIMER = 500000
 const DEVICE = "device1"
 const MQTTURL = 'tcp://broker.mqttdashboard.com:1883'
 const clientMqtt = mqtt.connect(MQTTURL)
@@ -30,6 +30,15 @@ clientMqtt.on('message', (topic, message) => {
 
 
 
+const { Pool, Client } = require("pg");
+
+const pool = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: "imh",
+    password: "password",
+    port: "2001"
+});
 
 /** @type ClientSession */
 let theSession = null;
@@ -130,6 +139,23 @@ async.series([
                         console.log(" New Value = ", value.toString());
                         const newValue = value.value.value.toString();
                         clientMqtt.publish('imh/' + DEVICE + '/temperature', newValue)
+
+                        pool.connect((err, client, release) => {
+                            if (err) {
+                                return console.error('Error acquiring client', err.stack)
+                            }
+                            let myQuery = "INSERT INTO data(time, temperature) VALUES ($1,$2)"
+
+                            client.query(myQuery, [new Date(value.serverTimestamp), newValue], (err, result) => {
+                                release()
+                                if (err) {
+                                    return console.error('Error executing query', err.stack)
+                                }
+                                console.log(result.rows)
+                            })
+                        })
+
+
 
                     })
                     .on("err", (err) => {

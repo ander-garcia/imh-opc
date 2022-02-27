@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "timescale",
+            "Group": "Servers",
+            "Port": 5432,
+            "Username": "postgres",
+            "Host": "timescale",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres",
+            "PassFile": "/pgpass"
+        }
+    }
+}

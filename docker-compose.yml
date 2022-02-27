@@ -1,0 +1,67 @@
+version: "3.2"
+services:
+  timescale:
+    image: timescale/timescaledb:latest-pg14
+    container_name: "timescale"
+    ports:
+      - 2001:5432
+    environment:      
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=imh
+      - DATA_TABLE=data
+      - GRAFANA_DATA_DDBB=data
+      - GRAFANA_DATA_USER=grafanareader
+      - GRAFANA_DATA_PASSSWORD=password2022
+      - GRAFANA_DDBB=grafana
+      - GRAFANA_DDBB_USER=grafanaUser
+      - GRAFANA_DDBB_PASSWORD=grafanaPass2022
+    volumes:
+      - ./postgres/initdb001.sh:/docker-entrypoint-initdb.d/init001.sh
+      - ./postgres/initdb002.sh:/docker-entrypoint-initdb.d/init002.sh
+    networks:
+      - imh_net
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - ./postgres/servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+      - ./postgres/pgpass:/pgpass # passwords for the connections in this file
+    networks:
+      - imh_net
+  grafana:
+    image: grafana/grafana:latest
+    container_name: monitoring_grafana
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./grafana/data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GRAFANA_DATA_HOST=timescale:5432
+      - GRAFANA_DATA_DDBB=imh
+      - GRAFANA_DATA_USER=grafanareader
+      - GRAFANA_DATA_PASSSWORD=password2022
+      - GRAFANA_DDBB_HOST=timescale:5432
+      - GRAFANA_DDBB=grafana
+      - GRAFANA_DDBB_USER=grafanauser
+      - GRAFANA_DDBB_PASSWORD=grafanaPass2022
+      - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_FEATURE_TOGGLES_ENABLE=ngalert
+      - GF_PLUGINS_PLUGIN_ADMIN_ENABLED=true
+      - GF_SKIP_VERIFY=true
+    restart: unless-stopped
+    depends_on:
+      - timescale
+    networks:
+      - imh_net
+   
+networks:
+  imh_net:

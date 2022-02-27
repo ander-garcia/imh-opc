@@ -1,0 +1,28 @@
+# config file version
+apiVersion: 1
+
+# list of datasources that should be deleted from the database
+deleteDatasources:
+  - name: TimeScale
+    orgId: 1
+
+# list of datasources to insert/update depending
+# what's available in the database
+datasources:
+  - name: TimeScale
+    type: postgres
+    orgId: 1
+    url: $GRAFANA_DATA_HOST
+    database: $GRAFANA_DATA_DDBB
+    user: $GRAFANA_DATA_USER
+    secureJsonData:
+      password: $GRAFANA_DATA_PASSSWORD
+    jsonData:
+      sslmode: "disable" # disable/require/verify-ca/verify-full
+      maxOpenConns: 0 # Grafana v5.4+
+      maxIdleConns: 2 # Grafana v5.4+
+      connMaxLifetime: 14400 # Grafana v5.4+
+      postgresVersion: 1000 # 903=9.3, 904=9.4, 905=9.5, 906=9.6, 1000=10
+      timescaledb: true
+    version: 1
+    editable: true
