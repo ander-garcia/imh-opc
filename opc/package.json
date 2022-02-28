@@ -1,0 +1,18 @@
+{
+  "name": "opc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "client": "node client.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^4.2.6",
+    "node-opcua": "^2.64.1",
+    "pg": "^8.7.3"
+  }
+}

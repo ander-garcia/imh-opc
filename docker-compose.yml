@@ -1,5 +1,31 @@
 version: "3.2"
 services:
+  opc-server:
+    image: "node:latest"
+    container_name: "opc-server"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./opc/:/home/node/app    
+    command: "npm run server"
+    networks:
+      - imh_net
+  opc-client:
+    image: "node:latest"
+    container_name: "opc-client"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./opc/:/home/node/app    
+    command: "npm run client"
+    depends_on:
+      - timescale
+    networks:
+      - imh_net
   timescale:
     image: timescale/timescaledb:latest-pg14
     container_name: "timescale"
