@@ -26,6 +26,29 @@ services:
       - timescale
     networks:
       - imh_net
+  opc-micro:
+    image: mcr.microsoft.com/iotedge/opc-plc:latest
+    container_name: "opc-micro"
+    command: --nodesfile ./opc-micro/nodesfile.json --pn=50000  --autoaccept --unsecuretransport  --ctb --sph --sn=8 --sr=10 --st=uint --fn=8 --fr=1 --ft=double
+    ports:
+      - "50000:50000"
+      - "8085:8080"
+    networks:
+      - imh_net
+  opc-client-micro:
+    image: "node:latest"
+    container_name: "opc-client-micro"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./opc/:/home/node/app    
+    command: "npm run client-micro"
+    depends_on:
+      - timescale
+    networks:
+      - imh_net
   timescale:
     image: timescale/timescaledb:latest-pg14
     container_name: "timescale"

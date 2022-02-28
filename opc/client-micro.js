@@ -11,15 +11,15 @@ const mqtt = require('mqtt')
 
 const client = OPCUAClient.create({ endpoint_must_exist: false });
 
-const endpointUrl = "opc.tcp://LPT00116.VICOMTECH.ES:26543";
-const nodeId = "ns=1;s=Temperature";
+const endpointUrl = "opc.tcp://opc-micro:50000";
+const nodeId = "ns=2;s=SlowUInt4";
 const TIMER = 500000
-const DEVICE = "device1"
+const DEVICE = "microsoft"
 const MQTTURL = 'tcp://broker.mqttdashboard.com:1883'
 const clientMqtt = mqtt.connect(MQTTURL)
 
 clientMqtt.on('connect', () => {
-    console.log("mqtt connecteed")
+    console.log("mqtt connecteed to broker" +MQTTURL)
     clientMqtt.publish('imh/connected', DEVICE)
     clientMqtt.subscribe('imh/#')
 })
@@ -34,10 +34,10 @@ const { Pool, Client } = require("pg");
 
 const pool = new Pool({
     user: "postgres",
-    host: "localhost",
+    host: "timescale",
     database: "imh",
     password: "password",
-    port: "2001"
+    port: "5432"
 });
 
 /** @type ClientSession */
@@ -56,7 +56,7 @@ async.series([
             if (err) {
                 console.log(" cannot connect to endpoint :", endpointUrl);
             } else {
-                console.log("connected !");
+                console.log("connected to opc ua server "+ endpointUrl);
             }
             callback(err);
         });
@@ -142,14 +142,14 @@ async.series([
 
                         pool.connect((err, client, release) => {
                             if (err) {
-                                return console.error('Error acquiring client', err.stack)
+                                return console.error('Error acquiring DB client', err.stack)
                             }
-                            let myQuery = "INSERT INTO data(time, temperature) VALUES ($1,$2)"
+                            let myQuery = "INSERT INTO data(time, temperature, sensor) VALUES ($1,$2,$3)"
 
-                            client.query(myQuery, [new Date(value.serverTimestamp), newValue], (err, result) => {
+                            client.query(myQuery, [new Date(value.serverTimestamp), newValue,DEVICE], (err, result) => {
                                 release()
                                 if (err) {
-                                    return console.error('Error executing query', err.stack)
+                                    return console.error('Error executing DB  query', err.stack)
                                 }
                                 console.log(result.rows)
                             })

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node server.js",
-    "client": "node client.js"
+    "client": "node client.js",
+    "client-micro": "node client-micro.js"
   },
   "author": "",
   "license": "ISC",
