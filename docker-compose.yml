@@ -111,6 +111,16 @@ services:
       - timescale
     networks:
       - imh_net
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Madrid
+    ports:
+      - "1880:1880"
+    networks:
+      - imh_net
+    volumes:
+      - ./node-red-data:/data
    
 networks:
   imh_net:
