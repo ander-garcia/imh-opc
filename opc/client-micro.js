@@ -16,17 +16,17 @@ const nodeId = "ns=2;s=SlowUInt4";
 const TIMER = 500000
 const DEVICE = "microsoft"
 const MQTTURL = 'tcp://broker.mqttdashboard.com:1883'
-const clientMqtt = mqtt.connect(MQTTURL)
+// const clientMqtt = mqtt.connect(MQTTURL)
 
-clientMqtt.on('connect', () => {
-    console.log("mqtt connecteed to broker" +MQTTURL)
-    clientMqtt.publish('imh/connected', DEVICE)
-    clientMqtt.subscribe('imh/#')
-})
+// clientMqtt.on('connect', () => {
+//     console.log("mqtt connecteed to broker" + MQTTURL)
+//     clientMqtt.publish('imh/connected', DEVICE)
+//     clientMqtt.subscribe('imh/#')
+// })
 
-clientMqtt.on('message', (topic, message) => {
-    console.log("New temperature", topic.toString(), message.toString())
-})
+// clientMqtt.on('message', (topic, message) => {
+//     console.log("New temperature micro from mqtt", topic.toString(), message.toString())
+// })
 
 
 
@@ -56,7 +56,7 @@ async.series([
             if (err) {
                 console.log(" cannot connect to endpoint :", endpointUrl);
             } else {
-                console.log("connected to opc ua server "+ endpointUrl);
+                console.log("connected to opc ua server " + endpointUrl);
             }
             callback(err);
         });
@@ -138,7 +138,7 @@ async.series([
                     .on("changed", function (value) {
                         console.log(" New Value = ", value.toString());
                         const newValue = value.value.value.toString();
-                        clientMqtt.publish('imh/' + DEVICE + '/temperature', newValue)
+                        // clientMqtt.publish('imh/' + DEVICE + '/temperature', newValue)
 
                         pool.connect((err, client, release) => {
                             if (err) {
@@ -146,7 +146,7 @@ async.series([
                             }
                             let myQuery = "INSERT INTO data(time, temperature, sensor) VALUES ($1,$2,$3)"
 
-                            client.query(myQuery, [new Date(value.serverTimestamp), newValue,DEVICE], (err, result) => {
+                            client.query(myQuery, [new Date(value.serverTimestamp), newValue, DEVICE], (err, result) => {
                                 release()
                                 if (err) {
                                     return console.error('Error executing DB  query', err.stack)

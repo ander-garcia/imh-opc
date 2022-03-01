@@ -1,3 +1,4 @@
 node_modules/*
 opc/node_modules/*
 node-red-data/node_modules/*
+node-red-data/.npm/*/*

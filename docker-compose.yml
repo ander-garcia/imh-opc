@@ -123,6 +123,5 @@ services:
       - imh_net
     volumes:
       - ./node-red-data:/data
-   
 networks:
   imh_net:

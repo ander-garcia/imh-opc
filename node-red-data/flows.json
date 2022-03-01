@@ -1,0 +1,490 @@
+[
+    {
+        "id": "e48ad83e73e0c4d1",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4a2dfe2199ebeed3",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b05a8400f7b411bb",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://localhost:53880",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "75e132c102cac6c7",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://opc-micro:50000",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "920b66b571c15555",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "9b74804cf880f176",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "98ea6548bf0524e2",
+        "type": "ui_group",
+        "name": "Group 1",
+        "tab": "9b74804cf880f176",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "31bbb5c0dd60b2d6",
+        "type": "ui_spacer",
+        "z": "e48ad83e73e0c4d1",
+        "name": "spacer",
+        "group": "98ea6548bf0524e2",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "9c153de7fb1465c0",
+        "type": "s7 endpoint",
+        "transport": "iso-on-tcp",
+        "address": "192.168.6.20",
+        "port": "102",
+        "rack": "0",
+        "slot": "1",
+        "localtsaphi": "01",
+        "localtsaplo": "00",
+        "remotetsaphi": "01",
+        "remotetsaplo": "00",
+        "connmode": "rack-slot",
+        "adapter": "",
+        "busaddr": "2",
+        "cycletime": "1000",
+        "timeout": "2000",
+        "name": "S7-1200",
+        "vartable": [
+            {
+                "addr": "DB13,INT0",
+                "name": "sdasd"
+            },
+            {
+                "addr": "DB12,INT4",
+                "name": "gfhfghfg"
+            }
+        ]
+    },
+    {
+        "id": "dde625437b565451",
+        "type": "inject",
+        "z": "e48ad83e73e0c4d1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "MyEvent",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "d114eaf1237d1034"
+            ]
+        ]
+    },
+    {
+        "id": "86074d6e0b7481bc",
+        "type": "debug",
+        "z": "e48ad83e73e0c4d1",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fb0cfcf7c3ac5017",
+        "type": "OpcUa-Server",
+        "z": "e48ad83e73e0c4d1",
+        "port": "53880",
+        "name": "MyServer",
+        "endpoint": "",
+        "users": "",
+        "nodesetDir": "",
+        "folderName4PKI": "",
+        "autoAcceptUnknownCertificate": true,
+        "registerToDiscovery": false,
+        "constructDefaultAddressSpace": true,
+        "allowAnonymous": true,
+        "endpointNone": true,
+        "endpointSign": true,
+        "endpointSignEncrypt": true,
+        "endpointBasic128Rsa15": true,
+        "endpointBasic256": true,
+        "endpointBasic256Sha256": true,
+        "maxNodesPerBrowse": 0,
+        "maxNodesPerHistoryReadData": 0,
+        "maxNodesPerHistoryReadEvents": 0,
+        "maxNodesPerHistoryUpdateData": 0,
+        "maxNodesPerRead": 0,
+        "maxNodesPerWrite": 0,
+        "maxNodesPerMethodCall": 0,
+        "maxNodesPerRegisterNodes": 0,
+        "maxNodesPerNodeManagement": 0,
+        "maxMonitoredItemsPerCall": 0,
+        "maxNodesPerHistoryUpdateEvents": 0,
+        "maxNodesPerTranslateBrowsePathsToNodeIds": 0,
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "86074d6e0b7481bc"
+            ]
+        ]
+    },
+    {
+        "id": "d114eaf1237d1034",
+        "type": "OpcUa-Event",
+        "z": "e48ad83e73e0c4d1",
+        "root": "i=2041",
+        "eventtype": "i=2041",
+        "name": "MyEvent",
+        "x": 200,
+        "y": 300,
+        "wires": [
+            [
+                "fb0cfcf7c3ac5017"
+            ]
+        ]
+    },
+    {
+        "id": "90c6f277069054a2",
+        "type": "OpcUa-Client",
+        "z": "e48ad83e73e0c4d1",
+        "endpoint": "75e132c102cac6c7",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": 10,
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "",
+        "x": 400,
+        "y": 420,
+        "wires": [
+            [
+                "5da0a1c8ee28acf2",
+                "8d7d417368acf896"
+            ]
+        ]
+    },
+    {
+        "id": "c18ea4bde2751f74",
+        "type": "inject",
+        "z": "e48ad83e73e0c4d1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "6",
+        "topic": "ns=2;s=SlowUInt4",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "90c6f277069054a2"
+            ]
+        ]
+    },
+    {
+        "id": "5da0a1c8ee28acf2",
+        "type": "debug",
+        "z": "e48ad83e73e0c4d1",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4d98cf568ca8fa14",
+        "type": "OpcUa-Event",
+        "z": "e48ad83e73e0c4d1",
+        "root": "i=2041",
+        "eventtype": "i=2041",
+        "name": "MyEvent",
+        "x": 220,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d7d417368acf896",
+        "type": "ui_text",
+        "z": "e48ad83e73e0c4d1",
+        "group": "98ea6548bf0524e2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "TEmperature Slow",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "38e668578cb28df7",
+        "type": "s7 in",
+        "z": "4a2dfe2199ebeed3",
+        "endpoint": "9c153de7fb1465c0",
+        "mode": "single",
+        "variable": "sdasd",
+        "diff": false,
+        "name": "",
+        "x": 350,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "78bed4bb75080da5",
+        "type": "debug",
+        "z": "4a2dfe2199ebeed3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "79d11a3bfc723eac",
+        "type": "inject",
+        "z": "4a2dfe2199ebeed3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "7",
+        "payloadType": "num",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04f335ca5727fcac",
+        "type": "s7 out",
+        "z": "4a2dfe2199ebeed3",
+        "endpoint": "9c153de7fb1465c0",
+        "variable": "sdasd",
+        "name": "AA",
+        "x": 450,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "77d3479965d6e794",
+        "type": "inject",
+        "z": "4a2dfe2199ebeed3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "10000",
+        "payloadType": "num",
+        "x": 220,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    }
+]
