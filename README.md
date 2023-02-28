@@ -10,6 +10,7 @@ Resources:
 
 Instructions:
 
-npm install
-node server.js
-node client.js
+
+  `npm install`  
+  `node server.js`  
+  `node client.js`
