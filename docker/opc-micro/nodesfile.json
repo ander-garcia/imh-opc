@@ -1,0 +1,21 @@
+{
+  "Folder": "MyTelemetry",
+  "NodeList": [
+    {
+      "NodeId": 1023,
+      "Name": "ActualSpeed",
+      "Description": "Rotational speed"
+    },
+    {
+      "NodeId": "aRMS"
+    },
+    {
+      "NodeId": "1025",
+      "Name": "DKW",
+      "DataType": "Float",
+      "ValueRank": -1,
+      "AccessLevel": "CurrentReadOrWrite",
+      "Description": "Diagnostic characteristic value"
+    }
+  ]
+}

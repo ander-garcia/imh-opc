@@ -1,0 +1,155 @@
+version: "3.2"
+services:
+  # opc-server:
+  #   image: "node:latest"
+  #   container_name: "opc-server"
+  #   user: "node"
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./opc/:/home/node/app    
+  #   command: "npm run server"
+  #   networks:
+  #     - imh_net
+  # opc-client:
+  #   image: "node:latest"
+  #   container_name: "opc-client"
+  #   user: "node"
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./opc/:/home/node/app    
+  #   command: "npm run client"
+  #   depends_on:
+  #     - timescale
+  #   networks:
+  #     - imh_net
+  opc-micro:
+    image: mcr.microsoft.com/iotedge/opc-plc:latest
+    container_name: "opc-micro"
+    command: --nodesfile /home/nodesfile.json --pn=50000  --autoaccept --unsecuretransport  --ctb --sph --sn=8 --sr=10 --st=uint --fn=8 --fr=1 --ft=double
+    volumes:
+      - ./opc-micro/nodesfile.json:/home/nodesfile.json
+    ports:
+      - "50000:50000"
+      - "8085:8080"
+    networks:
+      - imh_net
+  # opc-client-micro:
+  #   image: "node:latest"
+  #   container_name: "opc-client-micro"
+  #   user: "node"
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./opc/:/home/node/app    
+  #   command: "npm run client-micro"
+  #   depends_on:
+  #     - timescale
+  #   networks:
+  #     - imh_net
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    container_name: "timescaledb"
+    ports:
+      - 2002:5432
+    environment:      
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=p4ssw0rd
+      - POSTGRES_DB=in4pl
+      - DATA_TABLE=boiler
+      - GRAFANA_DATA_DDBB=boiler
+      - GRAFANA_DATA_USER=grafanareader
+      - GRAFANA_DATA_PASSSWORD=password2022
+      - GRAFANA_DDBB=grafana
+      - GRAFANA_DDBB_USER=grafanaUser
+      - GRAFANA_DDBB_PASSWORD=grafanaPass2022
+    volumes:
+      - ./postgres/initdb001.sh:/docker-entrypoint-initdb.d/init001.sh
+      - ./postgres/initdb002.sh:/docker-entrypoint-initdb.d/init002.sh
+      - timescale-data:/var/lib/postgresql/data
+
+    networks:
+      - imh_net
+  pgadmindb:
+    container_name: pgadmin4db
+    image: dpage/pgadmin4
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - ./postgres/servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+      - ./postgres/pgpass:/pgpass # passwords for the connections in this file
+    networks:
+      - imh_net
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: monitoring_grafana
+    volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - grafana-storage:/var/lib/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GRAFANA_DATA_HOST=timescaledb:5432
+      - GRAFANA_DATA_DDBB=in4pl
+      - GRAFANA_DATA_USER=grafanareader
+      - GRAFANA_DATA_PASSSWORD=password2022
+      - GRAFANA_DDBB_HOST=timescaledb:5432
+      - GRAFANA_DDBB=grafana
+      - GRAFANA_DDBB_USER=grafanauser
+      - GRAFANA_DDBB_PASSWORD=grafanaPass2022
+      - GF_SECURITY_ADMIN_PASSWORD=MYPASSWORT
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_FEATURE_TOGGLES_ENABLE=ngalert
+      - GF_PLUGINS_PLUGIN_ADMIN_ENABLED=true
+      - GF_SKIP_VERIFY=true
+    restart: unless-stopped
+    depends_on:
+      - timescaledb
+    networks:
+      - imh_net
+  node-red:
+    image: nodered/node-red:latest
+    environment:
+      - TZ=Europe/Madrid
+    ports:
+      - "1880:1880"
+      - "53880:53880"
+    networks:
+      - imh_net
+    volumes:
+      - ./node-red-data:/data
+  mqtt:
+    image: eclipse-mosquitto:2.0.10
+    hostname: mqtt
+    container_name: mqtt
+    ports:
+      - 1883:1883
+      - 9002:9001
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/p.txt:/mosquitto/config/mosquitto.passwd
+    networks:
+      - imh_net
+  # rabbitmq:
+  #   image: rabbitmq:3-management-alpine
+  #   container_name: "rabbitmq"
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
+  #   volumes:
+  #     - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf    
+  #   networks:
+  #     - imh_net
+networks:
+  imh_net:
+volumes:
+  grafana-storage:
+  timescale-data:

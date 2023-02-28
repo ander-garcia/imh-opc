@@ -1,0 +1,319 @@
+[
+    {
+        "id": "4e7e12c07ca7c4f9",
+        "type": "tab",
+        "label": "Client",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9ce7af8b8798dd30",
+        "type": "tab",
+        "label": "Writer",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ef0a1b42cde475be",
+        "type": "OpcUa-Endpoint",
+        "endpoint": "opc.tcp://opc-micro:50000",
+        "secpol": "None",
+        "secmode": "None",
+        "login": false
+    },
+    {
+        "id": "de62b53ee637d717",
+        "type": "postgresdb",
+        "cfgname": "timescale",
+        "hostname": "timescaledb",
+        "port": "5432",
+        "db": "in4pl",
+        "ssl": false
+    },
+    {
+        "id": "0a42f122efecbf4e",
+        "type": "mqtt-broker",
+        "name": "mqtt-server",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "boiler-client",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "38eba8fb552d6592",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt",
+        "port": "1883",
+        "clientid": "boiler-writer",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1bb3b998da0f4fab",
+        "type": "OpcUa-Item",
+        "z": "4e7e12c07ca7c4f9",
+        "item": "ns=3;i=15013",
+        "datatype": "Extension Object",
+        "value": "",
+        "name": "boilerOPCNode",
+        "x": 220,
+        "y": 200,
+        "wires": [
+            [
+                "3ac777ab1cec1151"
+            ]
+        ]
+    },
+    {
+        "id": "3ac777ab1cec1151",
+        "type": "OpcUa-Client",
+        "z": "4e7e12c07ca7c4f9",
+        "endpoint": "ef0a1b42cde475be",
+        "action": "subscribe",
+        "deadbandtype": "a",
+        "deadbandvalue": 1,
+        "time": "5",
+        "timeUnit": "s",
+        "certificate": "n",
+        "localfile": "",
+        "localkeyfile": "",
+        "securitymode": "None",
+        "securitypolicy": "None",
+        "folderName4PKI": "",
+        "name": "OPCUA_Server",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "3a1144546c024def"
+            ]
+        ]
+    },
+    {
+        "id": "844a9e4b3c61742a",
+        "type": "inject",
+        "z": "4e7e12c07ca7c4f9",
+        "name": "Initializer",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 60,
+        "wires": [
+            [
+                "1bb3b998da0f4fab"
+            ]
+        ]
+    },
+    {
+        "id": "3a1144546c024def",
+        "type": "function",
+        "z": "4e7e12c07ca7c4f9",
+        "name": "AddSourceTimestampToPayload",
+        "func": "msg.payload = JSON.parse(JSON.stringify(msg.payload))\nif (!msg.payload.pressure) {\n    // heater is off\n    msg.payload = {}\n    msg.payload.data = {}\n    msg.payload.data.temperature = {}\n    msg.payload.data.temperature.top = -1,\n    msg.payload.data.temperature.bottom = -1\n    msg.payload.data.pressure = -1\n    msg.payload.data.heaterState = 0\n}\nelse \n{\n    newPayload = {}\n    newPayload = msg.payload\n    msg.payload = {}\n    msg.payload.data = newPayload\n}\nTIME_OFFSET = 0\nserverTime = msg.serverTimestamp\nserverTime.setHours( serverTime.getHours() +  TIME_OFFSET);\nmsg.payload.time = serverTime.toISOString()\nmsg.payload.id = \"boiler01\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 360,
+        "wires": [
+            [
+                "0e703de62243675c",
+                "82c8a665acc83592"
+            ]
+        ]
+    },
+    {
+        "id": "0e703de62243675c",
+        "type": "debug",
+        "z": "4e7e12c07ca7c4f9",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "82c8a665acc83592",
+        "type": "mqtt out",
+        "z": "4e7e12c07ca7c4f9",
+        "name": "mqtt-server",
+        "topic": "boiler",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "0a42f122efecbf4e",
+        "x": 1250,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "31abe50555aa6850",
+        "type": "debug",
+        "z": "9ce7af8b8798dd30",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "057de6ccc54b4919",
+        "type": "postgres",
+        "z": "9ce7af8b8798dd30",
+        "postgresdb": "de62b53ee637d717",
+        "name": "timescale",
+        "output": false,
+        "perrow": false,
+        "rowspermsg": "1",
+        "return_on_error": false,
+        "limit_queries": "0",
+        "limit_by": "payload",
+        "limit_value": "1",
+        "limit_drop_intermediate": false,
+        "limit_drop_if_in_queue": false,
+        "outputs": false,
+        "x": 740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "51d3b1233c41c3b3",
+        "type": "template",
+        "z": "9ce7af8b8798dd30",
+        "name": "template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "INSERT INTO public.boiler(\"time\", top, bottom, pressure, \"heaterState\",\"boilerId\") VALUES ('{{payload.time}}', {{payload.data.temperature.top}}, {{payload.data.temperature.bottom}}, {{payload.data.pressure}}, {{payload.data.heaterState}},'{{payload.id}}');",
+        "output": "str",
+        "x": 320,
+        "y": 420,
+        "wires": [
+            [
+                "31abe50555aa6850",
+                "057de6ccc54b4919"
+            ]
+        ]
+    },
+    {
+        "id": "1e7c1a9d5ccda7a8",
+        "type": "mqtt in",
+        "z": "9ce7af8b8798dd30",
+        "name": "",
+        "topic": "boiler",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "38eba8fb552d6592",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "feeb365b324f4d7a"
+            ]
+        ]
+    },
+    {
+        "id": "af26a7089abd2332",
+        "type": "debug",
+        "z": "9ce7af8b8798dd30",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "feeb365b324f4d7a",
+        "type": "json",
+        "z": "9ce7af8b8798dd30",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "51d3b1233c41c3b3",
+                "af26a7089abd2332"
+            ]
+        ]
+    }
+]

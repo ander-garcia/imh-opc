@@ -1,0 +1,508 @@
+0 info it worked if it ends with ok
+1 verbose cli [
+1 verbose cli   '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--no-audit',
+1 verbose cli   '--no-update-notifier',
+1 verbose cli   '--no-fund',
+1 verbose cli   '--save',
+1 verbose cli   '--save-prefix=~',
+1 verbose cli   '--production',
+1 verbose cli   '--engine-strict',
+1 verbose cli   'node-red-contrib-amqp@1.0.2'
+1 verbose cli ]
+2 info using npm@6.14.15
+3 info using node@v14.18.2
+4 verbose npm-session b1d20436a34c6758
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 http fetch GET 200 https://registry.npmjs.org/node-red-contrib-amqp 926ms
+8 http fetch GET 200 https://registry.npmjs.org/node-red-contrib-amqp/-/node-red-contrib-amqp-1.0.2.tgz 314ms
+9 silly pacote version manifest for node-red-contrib-amqp@1.0.2 fetched in 1276ms
+10 timing stage:loadCurrentTree Completed in 2231ms
+11 silly install loadIdealTree
+12 silly install cloneCurrentTreeToIdealTree
+13 timing stage:loadIdealTree:cloneCurrentTree Completed in 2ms
+14 silly install loadShrinkwrap
+15 timing stage:loadIdealTree:loadShrinkwrap Completed in 262ms
+16 silly install loadAllDepsIntoIdealTree
+17 silly resolveWithNewModule node-red-contrib-amqp@1.0.2 checking installable status
+18 http fetch GET 200 https://registry.npmjs.org/getos 112ms
+19 http fetch GET 200 https://registry.npmjs.org/getos/-/getos-3.2.1.tgz 66ms
+20 silly pacote range manifest for getos@^3.1.1 fetched in 203ms
+21 silly resolveWithNewModule getos@3.2.1 checking installable status
+22 http fetch GET 200 https://registry.npmjs.org/amqp-ts 251ms
+23 http fetch GET 200 https://registry.npmjs.org/amqp-ts/-/amqp-ts-1.8.0.tgz 450ms
+24 silly pacote range manifest for amqp-ts@^1.0.0 fetched in 729ms
+25 silly resolveWithNewModule amqp-ts@1.8.0 checking installable status
+26 http fetch GET 200 https://registry.npmjs.org/bluebird 63ms
+27 http fetch GET 200 https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz 80ms
+28 silly pacote range manifest for bluebird@^3.3.5 fetched in 183ms
+29 silly resolveWithNewModule bluebird@3.7.2 checking installable status
+30 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 214ms
+31 http fetch GET 200 https://registry.npmjs.org/amqplib 261ms
+32 http fetch GET 200 https://registry.npmjs.org/winston 296ms
+33 http fetch GET 200 https://registry.npmjs.org/amqplib/-/amqplib-0.4.2.tgz 68ms
+34 http fetch GET 200 https://registry.npmjs.org/@types/node/-/node-12.20.55.tgz 92ms
+35 silly pacote range manifest for @types/node@^12.7.2 fetched in 345ms
+36 silly resolveWithNewModule @types/node@12.20.55 checking installable status
+37 silly pacote range manifest for amqplib@^0.4.1 fetched in 348ms
+38 silly resolveWithNewModule amqplib@0.4.2 checking installable status
+39 http fetch GET 200 https://registry.npmjs.org/winston/-/winston-2.4.6.tgz 66ms
+40 silly pacote range manifest for winston@^2.2.0 fetched in 396ms
+41 silly resolveWithNewModule winston@2.4.6 checking installable status
+42 timing stage:rollbackFailedOptional Completed in 1ms
+43 timing stage:runTopLevelLifecycles Completed in 3630ms
+44 silly saveTree node-red-project@0.0.1
+44 silly saveTree +-- node-red-contrib-amqp@1.0.2
+44 silly saveTree | +-- amqp-ts@1.8.0
+44 silly saveTree | | +-- @types/node@12.20.55
+44 silly saveTree | | +-- amqplib@0.4.2
+44 silly saveTree | | +-- bluebird@3.7.2
+44 silly saveTree | | `-- winston@2.4.6
+44 silly saveTree | |   +-- async@3.2.3
+44 silly saveTree | |   `-- colors@1.0.3
+44 silly saveTree | `-- getos@3.2.1
+44 silly saveTree +-- node-red-contrib-opcua@0.2.258
+44 silly saveTree | +-- chalk@4.1.2
+44 silly saveTree | | +-- ansi-styles@4.3.0
+44 silly saveTree | | | `-- color-convert@2.0.1
+44 silly saveTree | | |   `-- color-name@1.1.4
+44 silly saveTree | | `-- supports-color@7.2.0
+44 silly saveTree | |   `-- has-flag@4.0.0
+44 silly saveTree | +-- env-paths@2.2.1
+44 silly saveTree | +-- es6-map@0.1.5
+44 silly saveTree | | +-- d@1.0.1
+44 silly saveTree | | | +-- es5-ext@0.10.53
+44 silly saveTree | | | | +-- es6-iterator@2.0.3
+44 silly saveTree | | | | | `-- es6-symbol@3.1.3
+44 silly saveTree | | | | |   `-- ext@1.6.0
+44 silly saveTree | | | | |     `-- type@2.6.0
+44 silly saveTree | | | | +-- es6-symbol@3.1.3
+44 silly saveTree | | | | `-- next-tick@1.0.0
+44 silly saveTree | | | `-- type@1.2.0
+44 silly saveTree | | +-- es5-ext@0.10.53
+44 silly saveTree | | +-- es6-iterator@2.0.3
+44 silly saveTree | | +-- es6-set@0.1.5
+44 silly saveTree | | | +-- es6-symbol@3.1.1
+44 silly saveTree | | | `-- event-emitter@0.3.5
+44 silly saveTree | | +-- es6-symbol@3.1.3
+44 silly saveTree | | `-- event-emitter@0.3.5
+44 silly saveTree | +-- flatted@3.2.5
+44 silly saveTree | +-- node-opcua-file-transfer@2.64.1
+44 silly saveTree | | +-- node-opcua-address-space@2.64.1
+44 silly saveTree | | | +-- @types/lodash@4.14.179
+44 silly saveTree | | | +-- dequeue@1.0.5
+44 silly saveTree | | | +-- lodash@4.17.21
+44 silly saveTree | | | +-- node-opcua-address-space-base@2.64.1
+44 silly saveTree | | | | +-- node-opcua-assert@2.64.1
+44 silly saveTree | | | | | `-- better-assert@1.0.2
+44 silly saveTree | | | | |   `-- callsite@1.0.0
+44 silly saveTree | | | | +-- node-opcua-basic-types@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-binary-stream@2.64.1
+44 silly saveTree | | | | | | `-- node-opcua-buffer-utils@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-buffer-utils@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-date-time@2.64.1
+44 silly saveTree | | | | | | +-- long@4.0.0
+44 silly saveTree | | | | | | `-- node-opcua-utils@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-enum@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-guid@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-nodeid@2.64.1
+44 silly saveTree | | | | | | `-- node-opcua-constants@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-status-code@2.64.1
+44 silly saveTree | | | | | `-- node-opcua-utils@2.64.1
+44 silly saveTree | | | | +-- node-opcua-client-dynamic-extension-object@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-data-model@2.64.1
+44 silly saveTree | | | | | | `-- node-opcua-factory@2.64.1
+44 silly saveTree | | | | | |   `-- node-opcua-debug@2.64.1
+44 silly saveTree | | | | | |     `-- hexy@0.3.4
+44 silly saveTree | | | | | +-- node-opcua-data-value@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-extension-object@2.64.1
+44 silly saveTree | | | | | | `-- node-opcua-variant@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-debug@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-extension-object@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-factory@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-pseudo-session@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-service-browse@2.64.1
+44 silly saveTree | | | | | | | +-- node-opcua-service-secure-channel@2.64.1
+44 silly saveTree | | | | | | | | `-- node-opcua-types@2.64.1
+44 silly saveTree | | | | | | | |   +-- node-opcua-generator@2.64.1
+44 silly saveTree | | | | | | | |   | +-- node-opcua-numeric-range@2.64.1
+44 silly saveTree | | | | | | | |   | +-- node-opcua-schemas@2.64.1
+44 silly saveTree | | | | | | | |   | | +-- node-opcua-xml2json@2.64.1
+44 silly saveTree | | | | | | | |   | | | +-- bomstrip@0.1.4
+44 silly saveTree | | | | | | | |   | | | +-- ltx@3.0.0
+44 silly saveTree | | | | | | | |   | | | `-- xml-writer@1.7.0
+44 silly saveTree | | | | | | | |   | | `-- thenify@3.3.1
+44 silly saveTree | | | | | | | |   | |   `-- any-promise@1.3.0
+44 silly saveTree | | | | | | | |   | `-- node-opcua-xml2json@2.64.1
+44 silly saveTree | | | | | | | |   +-- node-opcua-numeric-range@2.64.1
+44 silly saveTree | | | | | | | |   +-- node-opcua-packet-analyzer@2.64.1
+44 silly saveTree | | | | | | | |   `-- node-opcua-schemas@2.64.1
+44 silly saveTree | | | | | | | `-- node-opcua-types@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-service-call@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-service-read@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-service-subscription@2.64.1
+44 silly saveTree | | | | | | | `-- node-opcua-service-filter@2.64.1
+44 silly saveTree | | | | | | |   `-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | | | | | +-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | | | | | `-- node-opcua-service-write@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-schemas@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-service-browse@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | | | | +-- node-opcua-types@2.64.1
+44 silly saveTree | | | | | `-- node-opcua-variant@2.64.1
+44 silly saveTree | | | | +-- node-opcua-constants@2.64.1
+44 silly saveTree | | | | +-- node-opcua-data-access@2.64.1
+44 silly saveTree | | | | +-- node-opcua-data-model@2.64.1
+44 silly saveTree | | | | +-- node-opcua-data-value@2.64.1
+44 silly saveTree | | | | +-- node-opcua-date-time@2.64.1
+44 silly saveTree | | | | +-- node-opcua-debug@2.64.1
+44 silly saveTree | | | | +-- node-opcua-enum@2.64.1
+44 silly saveTree | | | | +-- node-opcua-factory@2.64.1
+44 silly saveTree | | | | +-- node-opcua-nodeid@2.64.1
+44 silly saveTree | | | | +-- node-opcua-numeric-range@2.64.1
+44 silly saveTree | | | | +-- node-opcua-object-registry@2.64.1
+44 silly saveTree | | | | +-- node-opcua-pseudo-session@2.64.1
+44 silly saveTree | | | | +-- node-opcua-schemas@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-browse@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-call@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-filter@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-history@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | | | +-- node-opcua-service-write@2.64.1
+44 silly saveTree | | | | +-- node-opcua-status-code@2.64.1
+44 silly saveTree | | | | +-- node-opcua-types@2.64.1
+44 silly saveTree | | | | +-- node-opcua-utils@2.64.1
+44 silly saveTree | | | | +-- node-opcua-variant@2.64.1
+44 silly saveTree | | | | +-- node-opcua-xml2json@2.64.1
+44 silly saveTree | | | | +-- set-prototype-of@1.0.0
+44 silly saveTree | | | | +-- thenify@3.3.1
+44 silly saveTree | | | | `-- xml-writer@1.7.0
+44 silly saveTree | | | +-- node-opcua-assert@2.64.1
+44 silly saveTree | | | +-- node-opcua-basic-types@2.64.1
+44 silly saveTree | | | +-- node-opcua-client-dynamic-extension-object@2.64.1
+44 silly saveTree | | | +-- node-opcua-constants@2.64.1
+44 silly saveTree | | | +-- node-opcua-data-access@2.64.1
+44 silly saveTree | | | +-- node-opcua-data-model@2.64.1
+44 silly saveTree | | | +-- node-opcua-data-value@2.64.1
+44 silly saveTree | | | +-- node-opcua-date-time@2.64.1
+44 silly saveTree | | | +-- node-opcua-debug@2.64.1
+44 silly saveTree | | | +-- node-opcua-enum@2.64.1
+44 silly saveTree | | | +-- node-opcua-factory@2.64.1
+44 silly saveTree | | | +-- node-opcua-nodeid@2.64.1
+44 silly saveTree | | | +-- node-opcua-nodeset-ua@2.64.1
+44 silly saveTree | | | +-- node-opcua-numeric-range@2.64.1
+44 silly saveTree | | | +-- node-opcua-object-registry@2.64.1
+44 silly saveTree | | | +-- node-opcua-pseudo-session@2.64.1
+44 silly saveTree | | | +-- node-opcua-schemas@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-browse@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-call@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-filter@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-history@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-write@2.64.1
+44 silly saveTree | | | +-- node-opcua-status-code@2.64.1
+44 silly saveTree | | | +-- node-opcua-types@2.64.1
+44 silly saveTree | | | +-- node-opcua-utils@2.64.1
+44 silly saveTree | | | +-- node-opcua-variant@2.64.1
+44 silly saveTree | | | +-- node-opcua-xml2json@2.64.1
+44 silly saveTree | | | +-- set-prototype-of@1.0.0
+44 silly saveTree | | | +-- thenify@3.3.1
+44 silly saveTree | | | `-- xml-writer@1.7.0
+44 silly saveTree | | +-- node-opcua-assert@2.64.1
+44 silly saveTree | | +-- node-opcua-basic-types@2.64.1
+44 silly saveTree | | +-- node-opcua-client@2.64.1
+44 silly saveTree | | | +-- @ster5/global-mutex@1.2.0
+44 silly saveTree | | | +-- @types/async@3.2.12
+44 silly saveTree | | | +-- @types/once@1.4.0
+44 silly saveTree | | | +-- @types/underscore@1.11.4
+44 silly saveTree | | | +-- callbackify@1.1.0
+44 silly saveTree | | | +-- delayed@2.0.0
+44 silly saveTree | | | +-- node-opcua-certificate-manager@2.64.1
+44 silly saveTree | | | | +-- @types/mkdirp@1.0.1
+44 silly saveTree | | | | | `-- @types/node@17.0.21
+44 silly saveTree | | | | +-- mkdirp@1.0.4
+44 silly saveTree | | | | +-- node-opcua-crypto@1.9.0
+44 silly saveTree | | | | | +-- jsrsasign@10.5.8
+44 silly saveTree | | | | | `-- sshpk@1.17.0
+44 silly saveTree | | | | |   +-- asn1@0.2.6
+44 silly saveTree | | | | |   | `-- safer-buffer@2.1.2
+44 silly saveTree | | | | |   +-- assert-plus@1.0.0
+44 silly saveTree | | | | |   +-- bcrypt-pbkdf@1.0.2
+44 silly saveTree | | | | |   | `-- tweetnacl@0.14.5
+44 silly saveTree | | | | |   +-- dashdash@1.14.1
+44 silly saveTree | | | | |   +-- ecc-jsbn@0.1.2
+44 silly saveTree | | | | |   | `-- jsbn@0.1.1
+44 silly saveTree | | | | |   +-- getpass@0.1.7
+44 silly saveTree | | | | |   +-- jsbn@0.1.1
+44 silly saveTree | | | | |   +-- safer-buffer@2.1.2
+44 silly saveTree | | | | |   `-- tweetnacl@0.14.5
+44 silly saveTree | | | | +-- node-opcua-pki@2.14.0
+44 silly saveTree | | | | | +-- byline@5.0.0
+44 silly saveTree | | | | | +-- chokidar@3.5.3
+44 silly saveTree | | | | | | +-- anymatch@3.1.2
+44 silly saveTree | | | | | | | +-- normalize-path@3.0.0
+44 silly saveTree | | | | | | | `-- picomatch@2.3.1
+44 silly saveTree | | | | | | +-- braces@3.0.2
+44 silly saveTree | | | | | | | `-- fill-range@7.0.1
+44 silly saveTree | | | | | | |   `-- to-regex-range@5.0.1
+44 silly saveTree | | | | | | |     `-- is-number@7.0.0
+44 silly saveTree | | | | | | +-- fsevents@2.3.2
+44 silly saveTree | | | | | | +-- glob-parent@5.1.2
+44 silly saveTree | | | | | | | `-- is-glob@4.0.3
+44 silly saveTree | | | | | | |   `-- is-extglob@2.1.1
+44 silly saveTree | | | | | | +-- is-binary-path@2.1.0
+44 silly saveTree | | | | | | | `-- binary-extensions@2.2.0
+44 silly saveTree | | | | | | +-- is-glob@4.0.3
+44 silly saveTree | | | | | | +-- normalize-path@3.0.0
+44 silly saveTree | | | | | | `-- readdirp@3.6.0
+44 silly saveTree | | | | | +-- cli-table@0.3.11
+44 silly saveTree | | | | | +-- progress@2.0.3
+44 silly saveTree | | | | | +-- update-notifier@5.1.0
+44 silly saveTree | | | | | | +-- boxen@5.1.2
+44 silly saveTree | | | | | | | +-- ansi-align@3.0.1
+44 silly saveTree | | | | | | | | `-- string-width@4.2.3
+44 silly saveTree | | | | | | | |   +-- emoji-regex@8.0.0
+44 silly saveTree | | | | | | | |   +-- is-fullwidth-code-point@3.0.0
+44 silly saveTree | | | | | | | |   `-- strip-ansi@6.0.1
+44 silly saveTree | | | | | | | |     `-- ansi-regex@5.0.1
+44 silly saveTree | | | | | | | +-- camelcase@6.3.0
+44 silly saveTree | | | | | | | +-- cli-boxes@2.2.1
+44 silly saveTree | | | | | | | +-- string-width@4.2.3
+44 silly saveTree | | | | | | | +-- type-fest@0.20.2
+44 silly saveTree | | | | | | | +-- widest-line@3.1.0
+44 silly saveTree | | | | | | | `-- wrap-ansi@7.0.0
+44 silly saveTree | | | | | | +-- configstore@5.0.1
+44 silly saveTree | | | | | | | +-- dot-prop@5.3.0
+44 silly saveTree | | | | | | | | `-- is-obj@2.0.0
+44 silly saveTree | | | | | | | +-- graceful-fs@4.2.9
+44 silly saveTree | | | | | | | +-- make-dir@3.1.0
+44 silly saveTree | | | | | | | | `-- semver@6.3.0
+44 silly saveTree | | | | | | | +-- unique-string@2.0.0
+44 silly saveTree | | | | | | | | `-- crypto-random-string@2.0.0
+44 silly saveTree | | | | | | | +-- write-file-atomic@3.0.3
+44 silly saveTree | | | | | | | | +-- imurmurhash@0.1.4
+44 silly saveTree | | | | | | | | +-- is-typedarray@1.0.0
+44 silly saveTree | | | | | | | | +-- signal-exit@3.0.7
+44 silly saveTree | | | | | | | | `-- typedarray-to-buffer@3.1.5
+44 silly saveTree | | | | | | | `-- xdg-basedir@4.0.0
+44 silly saveTree | | | | | | +-- has-yarn@2.1.0
+44 silly saveTree | | | | | | +-- import-lazy@2.1.0
+44 silly saveTree | | | | | | +-- is-ci@2.0.0
+44 silly saveTree | | | | | | | `-- ci-info@2.0.0
+44 silly saveTree | | | | | | +-- is-installed-globally@0.4.0
+44 silly saveTree | | | | | | | +-- global-dirs@3.0.0
+44 silly saveTree | | | | | | | | `-- ini@2.0.0
+44 silly saveTree | | | | | | | `-- is-path-inside@3.0.3
+44 silly saveTree | | | | | | +-- is-npm@5.0.0
+44 silly saveTree | | | | | | +-- is-yarn-global@0.3.0
+44 silly saveTree | | | | | | +-- latest-version@5.1.0
+44 silly saveTree | | | | | | | `-- package-json@6.5.0
+44 silly saveTree | | | | | | |   +-- got@9.6.0
+44 silly saveTree | | | | | | |   | +-- @sindresorhus/is@0.14.0
+44 silly saveTree | | | | | | |   | +-- @szmarczak/http-timer@1.1.2
+44 silly saveTree | | | | | | |   | | `-- defer-to-connect@1.1.3
+44 silly saveTree | | | | | | |   | +-- cacheable-request@6.1.0
+44 silly saveTree | | | | | | |   | | +-- clone-response@1.0.2
+44 silly saveTree | | | | | | |   | | | `-- mimic-response@1.0.1
+44 silly saveTree | | | | | | |   | | +-- get-stream@5.2.0
+44 silly saveTree | | | | | | |   | | | `-- pump@3.0.0
+44 silly saveTree | | | | | | |   | | |   +-- end-of-stream@1.4.4
+44 silly saveTree | | | | | | |   | | |   | `-- once@1.4.0
+44 silly saveTree | | | | | | |   | | |   |   `-- wrappy@1.0.2
+44 silly saveTree | | | | | | |   | | |   `-- once@1.4.0
+44 silly saveTree | | | | | | |   | | +-- http-cache-semantics@4.1.0
+44 silly saveTree | | | | | | |   | | +-- keyv@3.1.0
+44 silly saveTree | | | | | | |   | | | `-- json-buffer@3.0.0
+44 silly saveTree | | | | | | |   | | +-- lowercase-keys@2.0.0
+44 silly saveTree | | | | | | |   | | +-- normalize-url@4.5.1
+44 silly saveTree | | | | | | |   | | `-- responselike@1.0.2
+44 silly saveTree | | | | | | |   | |   `-- lowercase-keys@1.0.1
+44 silly saveTree | | | | | | |   | +-- decompress-response@3.3.0
+44 silly saveTree | | | | | | |   | +-- duplexer3@0.1.4
+44 silly saveTree | | | | | | |   | +-- get-stream@4.1.0
+44 silly saveTree | | | | | | |   | +-- lowercase-keys@1.0.1
+44 silly saveTree | | | | | | |   | +-- mimic-response@1.0.1
+44 silly saveTree | | | | | | |   | +-- p-cancelable@1.1.0
+44 silly saveTree | | | | | | |   | +-- to-readable-stream@1.0.0
+44 silly saveTree | | | | | | |   | `-- url-parse-lax@3.0.0
+44 silly saveTree | | | | | | |   |   `-- prepend-http@2.0.0
+44 silly saveTree | | | | | | |   +-- registry-auth-token@4.2.1
+44 silly saveTree | | | | | | |   | `-- rc@1.2.8
+44 silly saveTree | | | | | | |   |   +-- deep-extend@0.6.0
+44 silly saveTree | | | | | | |   |   +-- ini@1.3.8
+44 silly saveTree | | | | | | |   |   +-- minimist@1.2.5
+44 silly saveTree | | | | | | |   |   `-- strip-json-comments@2.0.1
+44 silly saveTree | | | | | | |   +-- registry-url@5.1.0
+44 silly saveTree | | | | | | |   `-- semver@6.3.0
+44 silly saveTree | | | | | | +-- pupa@2.1.1
+44 silly saveTree | | | | | | | `-- escape-goat@2.1.1
+44 silly saveTree | | | | | | +-- semver-diff@3.1.1
+44 silly saveTree | | | | | | | `-- semver@6.3.0
+44 silly saveTree | | | | | | +-- semver@7.3.5
+44 silly saveTree | | | | | | | `-- lru-cache@6.0.0
+44 silly saveTree | | | | | | |   `-- yallist@4.0.0
+44 silly saveTree | | | | | | `-- xdg-basedir@4.0.0
+44 silly saveTree | | | | | +-- wget-improved@3.3.0
+44 silly saveTree | | | | | | `-- tunnel@0.0.6
+44 silly saveTree | | | | | +-- yargs@17.1.1
+44 silly saveTree | | | | | | +-- cliui@7.0.4
+44 silly saveTree | | | | | | +-- escalade@3.1.1
+44 silly saveTree | | | | | | +-- get-caller-file@2.0.5
+44 silly saveTree | | | | | | +-- require-directory@2.1.1
+44 silly saveTree | | | | | | +-- y18n@5.0.8
+44 silly saveTree | | | | | | `-- yargs-parser@20.2.9
+44 silly saveTree | | | | | `-- yauzl@2.10.0
+44 silly saveTree | | | | |   +-- buffer-crc32@0.2.13
+44 silly saveTree | | | | |   `-- fd-slicer@1.1.0
+44 silly saveTree | | | | |     `-- pend@1.2.0
+44 silly saveTree | | | | `-- once@1.4.0
+44 silly saveTree | | | +-- node-opcua-common@2.64.1
+44 silly saveTree | | | | `-- node-opcua-service-endpoints@2.64.1
+44 silly saveTree | | | +-- node-opcua-crypto@1.9.0
+44 silly saveTree | | | +-- node-opcua-hostname@2.64.1
+44 silly saveTree | | | +-- node-opcua-pki@2.14.0
+44 silly saveTree | | | +-- node-opcua-secure-channel@2.64.1
+44 silly saveTree | | | | +-- backoff@2.5.0
+44 silly saveTree | | | | | `-- precond@0.2.3
+44 silly saveTree | | | | +-- node-opcua-chunkmanager@2.64.1
+44 silly saveTree | | | | | `-- node-opcua-packet-assembler@2.64.1
+44 silly saveTree | | | | `-- node-opcua-transport@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-discovery@2.64.1
+44 silly saveTree | | | | +-- @types/bonjour@3.5.10
+44 silly saveTree | | | | `-- bonjour@3.5.0
+44 silly saveTree | | | |   +-- array-flatten@2.1.2
+44 silly saveTree | | | |   +-- deep-equal@1.1.1
+44 silly saveTree | | | |   | +-- is-arguments@1.1.1
+44 silly saveTree | | | |   | | +-- call-bind@1.0.2
+44 silly saveTree | | | |   | | | +-- function-bind@1.1.1
+44 silly saveTree | | | |   | | | `-- get-intrinsic@1.1.1
+44 silly saveTree | | | |   | | |   +-- has-symbols@1.0.2
+44 silly saveTree | | | |   | | |   `-- has@1.0.3
+44 silly saveTree | | | |   | | `-- has-tostringtag@1.0.0
+44 silly saveTree | | | |   | +-- is-date-object@1.0.5
+44 silly saveTree | | | |   | +-- is-regex@1.1.4
+44 silly saveTree | | | |   | +-- object-is@1.1.5
+44 silly saveTree | | | |   | | `-- define-properties@1.1.3
+44 silly saveTree | | | |   | |   `-- object-keys@1.1.1
+44 silly saveTree | | | |   | +-- object-keys@1.1.1
+44 silly saveTree | | | |   | `-- regexp.prototype.flags@1.4.1
+44 silly saveTree | | | |   +-- dns-equal@1.0.0
+44 silly saveTree | | | |   +-- dns-txt@2.0.2
+44 silly saveTree | | | |   | `-- buffer-indexof@1.1.1
+44 silly saveTree | | | |   +-- multicast-dns-service-types@1.1.0
+44 silly saveTree | | | |   `-- multicast-dns@6.2.3
+44 silly saveTree | | | |     +-- dns-packet@1.3.4
+44 silly saveTree | | | |     | +-- ip@1.1.5
+44 silly saveTree | | | |     | `-- safe-buffer@5.2.1
+44 silly saveTree | | | |     `-- thunky@1.1.0
+44 silly saveTree | | | +-- node-opcua-service-endpoints@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-query@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-register-node@2.64.1
+44 silly saveTree | | | +-- node-opcua-service-session@2.64.1
+44 silly saveTree | | | +-- once@1.4.0
+44 silly saveTree | | | `-- underscore@1.13.2
+44 silly saveTree | | +-- node-opcua-constants@2.64.1
+44 silly saveTree | | +-- node-opcua-data-model@2.64.1
+44 silly saveTree | | +-- node-opcua-debug@2.64.1
+44 silly saveTree | | +-- node-opcua-nodeid@2.64.1
+44 silly saveTree | | +-- node-opcua-nodesets@2.64.1
+44 silly saveTree | | +-- node-opcua-pki@2.14.0
+44 silly saveTree | | +-- node-opcua-pseudo-session@2.64.1
+44 silly saveTree | | +-- node-opcua-secure-channel@2.64.1
+44 silly saveTree | | +-- node-opcua-server@2.64.1
+44 silly saveTree | | | `-- node-opcua-service-node-management@2.64.1
+44 silly saveTree | | +-- node-opcua-service-call@2.64.1
+44 silly saveTree | | +-- node-opcua-service-read@2.64.1
+44 silly saveTree | | +-- node-opcua-service-translate-browse-path@2.64.1
+44 silly saveTree | | +-- node-opcua-status-code@2.64.1
+44 silly saveTree | | +-- node-opcua-types@2.64.1
+44 silly saveTree | | `-- node-opcua-variant@2.64.1
+44 silly saveTree | +-- node-opcua@2.64.1
+44 silly saveTree | | +-- node-opcua-address-space-for-conformance-testing@2.64.1
+44 silly saveTree | | +-- node-opcua-aggregates@2.64.1
+44 silly saveTree | | +-- node-opcua-client-crawler@2.64.1
+44 silly saveTree | | +-- node-opcua-client-proxy@2.64.1
+44 silly saveTree | | +-- node-opcua-server-discovery@2.64.1
+44 silly saveTree | | `-- node-opcua-vendor-diagnostic@2.64.1
+44 silly saveTree | |   `-- humanize@0.0.9
+44 silly saveTree | `-- treeify@1.1.0
+44 silly saveTree `-- node-red-dashboard@3.1.6
+44 silly saveTree   +-- compression@1.7.4
+44 silly saveTree   | +-- accepts@1.3.8
+44 silly saveTree   | | +-- mime-types@2.1.34
+44 silly saveTree   | | | `-- mime-db@1.51.0
+44 silly saveTree   | | `-- negotiator@0.6.3
+44 silly saveTree   | +-- bytes@3.0.0
+44 silly saveTree   | +-- compressible@2.0.18
+44 silly saveTree   | +-- debug@2.6.9
+44 silly saveTree   | | `-- ms@2.0.0
+44 silly saveTree   | +-- on-headers@1.0.2
+44 silly saveTree   | +-- safe-buffer@5.1.2
+44 silly saveTree   | `-- vary@1.1.2
+44 silly saveTree   +-- gridstack@0.6.4
+44 silly saveTree   | `-- jquery@3.6.0
+44 silly saveTree   +-- serve-static@1.14.2
+44 silly saveTree   | +-- encodeurl@1.0.2
+44 silly saveTree   | +-- escape-html@1.0.3
+44 silly saveTree   | +-- parseurl@1.3.3
+44 silly saveTree   | `-- send@0.17.2
+44 silly saveTree   |   +-- depd@1.1.2
+44 silly saveTree   |   +-- destroy@1.0.4
+44 silly saveTree   |   +-- etag@1.8.1
+44 silly saveTree   |   +-- fresh@0.5.2
+44 silly saveTree   |   +-- http-errors@1.8.1
+44 silly saveTree   |   | +-- inherits@2.0.4
+44 silly saveTree   |   | +-- setprototypeof@1.2.0
+44 silly saveTree   |   | +-- statuses@1.5.0
+44 silly saveTree   |   | `-- toidentifier@1.0.1
+44 silly saveTree   |   +-- mime@1.6.0
+44 silly saveTree   |   +-- ms@2.1.3
+44 silly saveTree   |   +-- on-finished@2.3.0
+44 silly saveTree   |   | `-- ee-first@1.1.1
+44 silly saveTree   |   +-- range-parser@1.2.1
+44 silly saveTree   |   `-- statuses@1.5.0
+44 silly saveTree   `-- socket.io@4.4.1
+44 silly saveTree     +-- base64id@2.0.0
+44 silly saveTree     +-- debug@4.3.3
+44 silly saveTree     | `-- ms@2.1.2
+44 silly saveTree     +-- engine.io@6.1.3
+44 silly saveTree     | +-- @types/cookie@0.4.1
+44 silly saveTree     | +-- @types/cors@2.8.12
+44 silly saveTree     | +-- cookie@0.4.2
+44 silly saveTree     | +-- cors@2.8.5
+44 silly saveTree     | | `-- object-assign@4.1.1
+44 silly saveTree     | +-- debug@4.3.3
+44 silly saveTree     | | `-- ms@2.1.2
+44 silly saveTree     | +-- engine.io-parser@5.0.3
+44 silly saveTree     | | `-- @socket.io/base64-arraybuffer@1.0.2
+44 silly saveTree     | `-- ws@8.2.3
+44 silly saveTree     +-- socket.io-adapter@2.3.3
+44 silly saveTree     `-- socket.io-parser@4.0.4
+44 silly saveTree       +-- @types/component-emitter@1.2.11
+44 silly saveTree       +-- component-emitter@1.3.0
+44 silly saveTree       `-- debug@4.3.3
+44 silly saveTree         `-- ms@2.1.2
+45 verbose stack Error: Unsupported engine for amqplib@0.4.2: wanted: {"node":">=0.8 <6 || ^6"} (current: {"node":"14.18.2","npm":"6.14.15"})
+45 verbose stack     at checkEngine (/usr/local/lib/node_modules/npm/node_modules/npm-install-checks/index.js:14:14)
+45 verbose stack     at module.exports.isInstallable (/usr/local/lib/node_modules/npm/lib/install/validate-args.js:60:3)
+45 verbose stack     at resolveWithNewModule (/usr/local/lib/node_modules/npm/lib/install/deps.js:677:10)
+45 verbose stack     at /usr/local/lib/node_modules/npm/lib/install/deps.js:600:7
+45 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/iferr/iferr.js:3:64
+45 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/call-limit/call-limit.js:28:43
+45 verbose stack     at processTicksAndRejections (internal/process/task_queues.js:77:11)
+46 verbose pkgid amqplib@0.4.2
+47 verbose cwd /data
+48 verbose Linux 5.4.72-microsoft-standard-WSL2
+49 verbose argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--no-audit" "--no-update-notifier" "--no-fund" "--save" "--save-prefix=~" "--production" "--engine-strict" "node-red-contrib-amqp@1.0.2"
+50 verbose node v14.18.2
+51 verbose npm  v6.14.15
+52 error code ENOTSUP
+53 error notsup Unsupported engine for amqplib@0.4.2: wanted: {"node":">=0.8 <6 || ^6"} (current: {"node":"14.18.2","npm":"6.14.15"})
+54 error notsup Not compatible with your version of node/npm: amqplib@0.4.2
+55 error notsup Not compatible with your version of node/npm: amqplib@0.4.2
+55 error notsup Required: {"node":">=0.8 <6 || ^6"}
+55 error notsup Actual:   {"npm":"6.14.15","node":"14.18.2"}
+56 verbose exit [ 1, true ]

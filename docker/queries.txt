@@ -1,0 +1,27 @@
+SELECT time as "time", AVG(temperature) OVER(ORDER BY time
+      ROWS BETWEEN 90 PRECEDING AND CURRENT ROW)
+    AS smooth_temp
+  FROM data
+  WHERE  
+  $__timeFilter("time")
+ORDER BY 1
+
+SELECT time, temperature - LAG(temperature) OVER (ORDER BY time) AS diff
+FROM data
+WHERE 
+  $__timeFilter("time")
+ORDER BY 1
+
+SELECT time60 as "time", avg from (SELECT time_bucket('60 seconds', time) AS time60, avg(temperature) as avg
+  FROM data
+   where
+  $__timeFilter("time")
+  GROUP BY time60
+  order by 1) as sub
+
+  SELECT time60 as "time", avg_fill from (SELECT time_bucket_gapfill('60 seconds', time) AS time60, avg(temperature) as avg_fill
+  FROM data
+   where
+  $__timeFilter("time")
+  GROUP BY time60
+  order by 1) as sub
